@@ -1,16 +1,17 @@
 <?php
-$host = "php-mysql-surya.mysql.database.azure.com";
-$user = "azureuser@php-mysql-surya";
-$pass = "Test@12345";  // use your latest password
-$db   = "testdb";
+$host = getenv("DB_HOST");
+$user = getenv("DB_USER");
+$pass = getenv("DB_PASS");
+$db   = getenv("DB_NAME");
 
-$conn = @new mysqli($host, $user, $pass, $db);
-$message = "";
-$result = null;
+$conn = mysqli_init();
+mysqli_ssl_set($conn, NULL, NULL, NULL, NULL, NULL);
+mysqli_real_connect($conn, $host, $user, $pass, $db, 3306);
 
-if ($conn->connect_error) {
-    $message = "Database connection failed: " . $conn->connect_error;
-} else {
+if (!$conn) {
+    die("Connection failed");
+}
+else {
     $createTable = "CREATE TABLE IF NOT EXISTS users (
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
