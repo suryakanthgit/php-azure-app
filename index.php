@@ -4,7 +4,6 @@ $user = getenv("DB_USER");
 $pass = getenv("DB_PASS");
 $db   = getenv("DB_NAME");
 
-// Suppress internal exceptions to handle them with your $message variable
 mysqli_report(MYSQLI_REPORT_OFF);
 
 $conn = @new mysqli($host, $user, $pass, $db);
@@ -24,7 +23,6 @@ if ($conn->connect_error) {
 
     if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST["name"])) {
         $name = trim($_POST["name"]);
-
         $stmt = $conn->prepare("INSERT INTO users (name) VALUES (?)");
         $stmt->bind_param("s", $name);
 
@@ -33,14 +31,12 @@ if ($conn->connect_error) {
         } else {
             $message = "Insert failed: " . $stmt->error;
         }
-
         $stmt->close();
     }
 
     $result = $conn->query("SELECT id, name, created_at FROM users ORDER BY id DESC");
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -119,15 +115,14 @@ if ($conn->connect_error) {
             <th>Name</th>
             <th>Created At</th>
         </tr>
-
         <?php
         if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>
-                        <td>" . htmlspecialchars($row['id']) . "</td>
-                        <td>" . htmlspecialchars($row['name']) . "</td>
-                        <td>" . htmlspecialchars($row['created_at']) . "</td>
-                      </tr>";
+                    <td>" . htmlspecialchars($row['id']) . "</td>
+                    <td>" . htmlspecialchars($row['name']) . "</td>
+                    <td>" . htmlspecialchars($row['created_at']) . "</td>
+                </tr>";
             }
         } else {
             echo "<tr><td colspan='3'>No data found</td></tr>";
@@ -141,6 +136,5 @@ if ($conn->connect_error) {
 <?php
 if ($conn && !$conn->connect_error) {
     $conn->close();
-    
 }
 ?>
