@@ -4,13 +4,14 @@ $user = getenv("DB_USER");
 $pass = getenv("DB_PASS");
 $db   = getenv("DB_NAME");
 
-$conn = mysqli_init();
-mysqli_ssl_set($conn, NULL, NULL, NULL, NULL, NULL);
-mysqli_real_connect($conn, $host, $user, $pass, $db, 3306);
+// Suppress internal exceptions to handle them with your $message variable
+mysqli_report(MYSQLI_REPORT_OFF);
 
-if (!$conn) {
-    die("Connection failed");
-}
+$conn = @new mysqli($host, $user, $pass, $db);
+
+if ($conn->connect_error) {
+    $message = "Database connection failed: " . $conn->connect_error;
+} else {
 else {
     $createTable = "CREATE TABLE IF NOT EXISTS users (
         id INT AUTO_INCREMENT PRIMARY KEY,
