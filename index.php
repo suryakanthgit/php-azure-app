@@ -12,7 +12,6 @@ $conn = @new mysqli($host, $user, $pass, $db);
 if ($conn->connect_error) {
     $message = "Database connection failed: " . $conn->connect_error;
 } else {
-else {
     $createTable = "CREATE TABLE IF NOT EXISTS users (
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
