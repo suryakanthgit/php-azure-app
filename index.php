@@ -1,8 +1,8 @@
 <?php
-$host = getenv("DB_HOST") ?: "localhost";
-$user = getenv("DB_USER") ?: "root";
-$pass = getenv("DB_PASS") ?: "";
-$db   = getenv("DB_NAME") ?: "testdb";
+$host = "php-mysql-surya.mysql.database.azure.com";
+$user = "azureuser@php-mysql-surya";
+$pass = "Test@12345";  // use your latest password
+$db   = "testdb";
 
 $conn = @new mysqli($host, $user, $pass, $db);
 $message = "";
