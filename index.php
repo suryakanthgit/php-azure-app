@@ -1,7 +1,7 @@
 <?php
 $host = "php-mysql-surya.mysql.database.azure.com";
 $user = "azureuser@php-mysql-surya";
-$pass = "Test@12345";  // use your latest password
+$pass = "Surya@1234";  // use your latest password
 $db   = "testdb";
 
 $conn = @new mysqli($host, $user, $pass, $db);
