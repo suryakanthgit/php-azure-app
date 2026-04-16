@@ -140,5 +140,6 @@ if ($conn->connect_error) {
 <?php
 if ($conn && !$conn->connect_error) {
     $conn->close();
+    
 }
 ?>
