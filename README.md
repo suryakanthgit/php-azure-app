@@ -12,9 +12,6 @@ The application allows users to submit data, which is stored in an Azure MySQL d
 ### 🔹 CI/CD Deployment (Azure Container Apps)
 https://php-app.mangomoss-fc367e64.southeastasia.azurecontainerapps.io
 
-### 🔹 Manual Deployment (Azure VM)
-http://4.193.142.214
-
 ---
 
 ## 🛠 Tech Stack
